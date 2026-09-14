@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bu0vl0rsf028o"]
+
+[ext_resource type="Script" uid="uid://il1plxrjvo0x" path="res://src/core/maingame/MainGame.gd" id="1_j7xvn"]
+[ext_resource type="PackedScene" uid="uid://gm5m6ua3id1p" path="res://src/debug/DebugTextOverlay.tscn" id="2_fncp6"]
+
+[node name="MainGame" type="Node" unique_id=397684878]
+process_mode = 3
+script = ExtResource("1_j7xvn")
+
+[node name="Systems" type="Node" parent="." unique_id=135848078]
+
+[node name="World" type="Node2D" parent="." unique_id=1573700459]
+process_mode = 1
+
+[node name="LevelRoot" type="Node2D" parent="World" unique_id=1397691414]
+unique_name_in_owner = true
+
+[node name="EntityRoot" type="Node2D" parent="World" unique_id=1722368558]
+unique_name_in_owner = true
+
+[node name="EffectsRoot" type="Node2D" parent="World" unique_id=350155942]
+unique_name_in_owner = true
+
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=1288995333]
+process_mode = 1
+layer = 10
+
+[node name="HudRoot" type="Control" parent="HudLayer" unique_id=1158613730]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HudLayer/HudRoot" unique_id=1878998763]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1055659304]
+process_mode = 2
+layer = 20
+
+[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=1579415929]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=2029671398]
+process_mode = 3
+layer = 100
+
+[node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=1367498182]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=831342942]
+process_mode = 3
+layer = 128
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=717075987]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1042030236 instance=ExtResource("2_fncp6")]
+layout_mode = 1

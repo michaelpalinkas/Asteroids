@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cwwtqa88c4cic"]
+
+[ext_resource type="Texture2D" uid="uid://d2cjn2nts024a" path="res://assets/art/entities/Asteroid.png" id="1_c4kb0"]
+[ext_resource type="Script" uid="uid://b3uihjou7nmyt" path="res://src/gameplay/entities/Asteroid.gd" id="1_mnade"]
+
+[node name="Asteroid" type="Node2D" unique_id=498947304]
+script = ExtResource("1_mnade")
+asteroidEdgeBuffer = 50
+
+[node name="AsteroidBody" type="CharacterBody2D" parent="." unique_id=11380970]
+
+[node name="AsteroidSprite" type="Sprite2D" parent="AsteroidBody" unique_id=1809792116]
+texture = ExtResource("1_c4kb0")
+
+[node name="AstroidCollisionPolygon" type="CollisionPolygon2D" parent="AsteroidBody" unique_id=1188779535]
+polygon = PackedVector2Array(-68, -46, -71, -34, -81, -29, -90, 1, -89, 26, -95, 44, -81, 64, -45, 75, -30, 96, 17, 97, 65, 61, 57, 41, 65, -5, 19, -56, -10, -66, -40, -60)

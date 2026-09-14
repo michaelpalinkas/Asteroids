@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cy7nbtrv0510p"]
+
+[ext_resource type="Script" uid="uid://dbosx7bcb2h86" path="res://src/gameplay/player/Player.gd" id="1_ld8jk"]
+[ext_resource type="Texture2D" uid="uid://cfb7imjjyr4j5" path="res://assets/art/player/Ship.png" id="2_3du27"]
+[ext_resource type="Script" uid="uid://cj8dpek14smjb" path="res://src/core/StateLogic/StateMachine.gd" id="3_km0ph"]
+[ext_resource type="Script" uid="uid://dws0y2nsb2thn" path="res://src/gameplay/player/states/PlayerIdle.gd" id="4_yfsif"]
+[ext_resource type="Script" uid="uid://dtiubxo0bps8d" path="res://src/gameplay/player/states/PlayerMoving.gd" id="5_wa5q6"]
+
+[node name="Player" type="Node2D" unique_id=1622115985]
+script = ExtResource("1_ld8jk")
+
+[node name="PlayerCharacterBody" type="CharacterBody2D" parent="." unique_id=1060108140]
+scale = Vector2(0.5, 0.5)
+
+[node name="PlayerCollisionPolygon" type="CollisionPolygon2D" parent="PlayerCharacterBody" unique_id=900003345]
+polygon = PackedVector2Array(-31, 33, 0, -29, 31, 33, 0, 24)
+
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerCharacterBody" unique_id=179879770]
+texture = ExtResource("2_3du27")
+
+[node name="StateMachine" type="Node" parent="." unique_id=517364846 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_km0ph")
+initial_state = NodePath("PlayerIdle")
+metadata/_custom_type_script = "uid://cj8dpek14smjb"
+
+[node name="PlayerIdle" type="Node" parent="StateMachine" unique_id=1173868903]
+script = ExtResource("4_yfsif")
+friction = 100.0
+metadata/_custom_type_script = "uid://dws0y2nsb2thn"
+
+[node name="PlayerMoving" type="Node" parent="StateMachine" unique_id=144345984]
+script = ExtResource("5_wa5q6")
+maxspeed = 1000
+acceleration = 400.0
+rotationSpeed = 3.0
+rotationTargetRadians = 1.5
+metadata/_custom_type_script = "uid://dtiubxo0bps8d"

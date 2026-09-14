@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bk7vltyxhqtfr"]
+
+[ext_resource type="Script" uid="uid://b42orloqf2b5y" path="res://src/levels/Lvl1.gd" id="1_gl3iv"]
+[ext_resource type="Script" uid="uid://es33vqavru6i" path="res://src/levels/Parallax.gd" id="2_6e3fa"]
+[ext_resource type="Texture2D" uid="uid://ba82du47u82t4" path="res://assets/art/world/SpaceBackground.png" id="3_7qb6s"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rl5ul"]
+texture = ExtResource("3_7qb6s")
+texture_region_size = Vector2i(1024, 1024)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yu0bm"]
+tile_size = Vector2i(1024, 1024)
+sources/0 = SubResource("TileSetAtlasSource_rl5ul")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6e3fa"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7qb6s"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rl5ul"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6g1ck"]
+
+[node name="Lvl1" type="Node2D" unique_id=1725920805]
+script = ExtResource("1_gl3iv")
+maxAsteroidCount = 6
+startingAsteroidCount = 3
+maxAsteroidSpeed = 50
+minAsteroidSpeed = 10
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1992175276]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1107875453]
+repeat_size = Vector2(1024, 1024)
+repeat_times = 2
+script = ExtResource("2_6e3fa")
+scroll_speed = Vector2(8, 5)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D" unique_id=1026254646]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_yu0bm")
+
+[node name="LeftWorldBorder" type="Area2D" parent="." unique_id=1990421217]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWorldBorder" unique_id=663604824]
+position = Vector2(-25, 512)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_6e3fa")
+
+[node name="RightWorldBorder" type="Area2D" parent="." unique_id=195462306]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWorldBorder" unique_id=60150851]
+position = Vector2(1049, 512)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_7qb6s")
+
+[node name="TopWorldBorder" type="Area2D" parent="." unique_id=1019149081]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWorldBorder" unique_id=1900904602]
+position = Vector2(512, -25)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_rl5ul")
+
+[node name="BottomWorldBorder" type="Area2D" parent="." unique_id=1027063603]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWorldBorder" unique_id=1832131566]
+position = Vector2(512, 1053)
+shape = SubResource("WorldBoundaryShape2D_6g1ck")
+
+[connection signal="body_entered" from="LeftWorldBorder" to="." method="_on_left_world_border_body_entered"]
+[connection signal="body_entered" from="RightWorldBorder" to="." method="_on_right_world_border_body_entered"]
+[connection signal="body_entered" from="TopWorldBorder" to="." method="_on_top_world_border_body_entered"]
+[connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]
